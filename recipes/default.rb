@@ -44,7 +44,8 @@ template config_file do
     'port' => node['charon']['config']['port'],
     'user' => node['charon']['config']['user'],
     'password' => node['charon']['config']['password'],
-    'nfs_path' => node['charon']['config']['nfs_path']
+    'nfs_path' => node['charon']['config']['nfs_path'],
+    'vhost' => node['charon']['config']['vhost']
 end
 
 smf 'charon' do
