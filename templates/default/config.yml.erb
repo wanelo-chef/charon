@@ -1,0 +1,15 @@
+listening:
+  pipe_path: <%= @pipe_path %>
+messaging:
+  exchange: <%= @exchange %>
+  routing_key: <%= @routing_key %>
+  rabbitmq:
+    host: <%= @host %>
+    port: <%= @port %>
+    user: <%= @user %>
+    password: <%= @password %>
+publishing:
+  nfs:
+    dest_dir: <%= @nfs_path %>
+logging:
+  level: debug
