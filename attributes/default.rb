@@ -11,3 +11,5 @@ default['charon']['config']['port'] = 5672
 default['charon']['config']['user'] = 'guest'
 default['charon']['config']['password'] = 'guest'
 default['charon']['config']['nfs_path'] = '/var/nfs'
+
+default['charon']['service']['pure_ftpd_fmri'] = 'svc:/application/management/pure-ftpd'

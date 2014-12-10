@@ -67,6 +67,11 @@ smf 'charon' do
     'LANG' => 'en_us.UTF-8',
     'LC_LANG' => 'en_us.UTF-8'
   })
+
+  dependencies [
+    {'name' => 'pure-ftpd', 'fmris' => [node['charon']['service']['pure_ftpd_fmri']],
+      'grouping' => 'require_all', 'restart_on' => 'restart', 'type' => 'service'}
+  ]
 end
 
 service 'charon' do
