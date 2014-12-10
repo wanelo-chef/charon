@@ -2,6 +2,7 @@ listening:
   pipe_path: <%= @pipe_path %>
 messaging:
   exchange: <%= @exchange %>
+  durable: <%= @durable.to_s %>
   routing_key: <%= @routing_key %>
   rabbitmq:
     host: <%= @host %>

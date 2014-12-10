@@ -28,15 +28,26 @@ install_dir = '/opt/charon'
 
 git install_dir do
   repository node['charon']['git']['repository']
+  notifies :run, 'execute[gem build charon.gemspec]'
 end
 
 execute 'gem build charon.gemspec' do
+  action :nothing
   cwd install_dir
   umask 0022
+  notifies :run, 'ruby_block[install charon gemspec]'
 end
 
-gem_package 'charon' do
-  source '%s/charon-0.0.1.gem' % install_dir
+ruby_block 'install charon gemspec' do
+  action :nothing
+
+  block do
+    gem = Dir["#{install_dir}/*.gem"].first
+    `gem install #{gem}`
+    ::File.unlink gem
+  end
+
+  notifies :restart, 'service[charon]'
 end
 
 config_file = File.join(node['paths']['etc_dir'], 'charon.yml')
@@ -45,6 +56,7 @@ template config_file do
   source 'config.yml.erb'
   variables 'pipe_path' => node['charon']['config']['pipe_path'],
     'exchange' => node['charon']['config']['exchange'],
+    'durable' => node['charon']['config']['durable'],
     'routing_key' => node['charon']['config']['routing_key'],
     'host' => node['charon']['config']['host'],
     'port' => node['charon']['config']['port'],
