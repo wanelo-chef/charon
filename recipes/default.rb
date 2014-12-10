@@ -11,6 +11,11 @@ include_recipe 'smf'
 
 user = node['charon']['user']
 user user
+directory node['charon']['config']['nfs_path'] do
+  action :create
+  mode 0755
+  owner user
+end
 
 package 'ruby212-base' do
   version '2.1'

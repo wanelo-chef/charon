@@ -4,7 +4,7 @@ maintainer_email 'dev@wanelo.com'
 license          'All rights reserved'
 description      'Installs/Configures charon'
 long_description 'Installs/Configures charon'
-version          '0.1.1'
+version          '0.1.2'
 
 depends 'paths'
 depends 'smf'
