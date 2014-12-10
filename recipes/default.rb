@@ -17,8 +17,9 @@ directory node['charon']['config']['nfs_path'] do
   owner user
 end
 
-package 'ruby212-base' do
+package 'ruby' do
   version '2.1'
+  ignore_failure true
 end
 
 gem_package 'bundler'
